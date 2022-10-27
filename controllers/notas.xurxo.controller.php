@@ -5,7 +5,6 @@ if (isset($_POST["enviar"])) {
     $data["in"] = filter_var_array($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
     if (empty($data["err"]["notas"])) {
         $data["res"] = notasAlumnos($_POST);
-        var_dump($data);
     }
 }
 
@@ -49,11 +48,11 @@ function notasAlumnos(array $POST): array
             }
             if ($max["nota"] < $nota) {
                 $max["nome"] = $nome;
-                $max["nota"] = $nota;
+                $max["nota"] = number_format($nota, 2, ",", ".");
             }
             if ($min["nota"] > $nota) {
                 $min["nome"] = $nome;
-                $min["nota"] = $nota;
+                $min["nota"] = number_format($nota, 2, ",", ".");
             }
         }
 

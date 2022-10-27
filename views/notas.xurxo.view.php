@@ -5,6 +5,100 @@
 
 <!-- Content Row -->
 <div class="row">
+    <?php
+    if (isset($data["res"])) {
+    ?>
+
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Tabla de resultados</h6>
+                </div>
+                <div class="card-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Módulo</th>
+                                <th>Media</th>
+                                <th>Aprobados</th>
+                                <th>suspensas</th>
+                                <th>Máximo</th>
+                                <th>Mínimo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data["res"]["datos"] as $asignatura => $datos) { ?>
+                                <tr>
+                                    <td><?php echo $asignatura; ?></td>
+                                    <td><?php echo $datos["media"]; ?></td>
+                                    <td><?php echo $datos["aprobados"]; ?></td>
+                                    <td><?php echo $datos["suspensos"]; ?></td>
+                                    <td><?php echo $datos["max"]["nome"] . ": " . $datos["max"]["nota"]; ?></td>
+                                    <td><?php echo $datos["min"]["nome"] . ": " . $datos["min"]["nota"]; ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="alert alert-success">
+                <ul>
+                    <?php
+                    foreach ($data["res"]["cualificacions"] as $nome => $cualificacions) {
+                        if ($cualificacions["suspensas"] == 0) {
+                            echo "<li>$nome</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+
+            <div class="alert alert-warning">
+                <ul>
+                    <?php
+                    foreach ($data["res"]["cualificacions"] as $nome => $cualificacions) {
+                        if ($cualificacions["suspensas"] >= 1) {
+                            echo "<li>$nome</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="alert alert-primary">
+                <ul>
+                    <?php
+                    foreach ($data["res"]["cualificacions"] as $nome => $cualificacions) {
+                        if ($cualificacions["suspensas"] <= 1) {
+                            echo "<li>$nome</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+
+            <div class="alert alert-danger">
+                <ul>
+                    <?php
+                    foreach ($data["res"]["cualificacions"] as $nome => $cualificacions) {
+                        if ($cualificacions["suspensas"] >= 2) {
+                            echo "<li>$nome</li>";
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
     <div class="col-12">
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
