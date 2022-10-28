@@ -57,7 +57,9 @@
                     ?>
                 </ul>
             </div>
+        </div>
 
+        <div class="col-12 col-lg-6">
             <div class="alert alert-warning">
                 <ul>
                     <?php
@@ -83,7 +85,9 @@
                     ?>
                 </ul>
             </div>
+        </div>
 
+        <div class="col-12 col-lg-6">
             <div class="alert alert-danger">
                 <ul>
                     <?php
